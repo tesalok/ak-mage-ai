@@ -1,0 +1,14 @@
+sources:
+- description: Dataframes Mage upstream blocks
+  loader: mage
+  name: mage_ak
+  schema: space
+  tables:
+  - description: Dataframe for block `sql_space_loader` of the `dbt_ak_pipeline` mage
+      pipeline.
+    identifier: mage_dbt_ak_pipeline_sql_space_loader
+    meta:
+      block_uuid: sql_space_loader
+      pipeline_uuid: dbt_ak_pipeline
+    name: dbt_ak_pipeline_sql_space_loader
+version: 2

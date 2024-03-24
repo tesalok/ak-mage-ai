@@ -53,3 +53,5 @@ notification_config:
     webhook_url: "{{ env_var('MAGE_TEAMS_WEBHOOK_URL') }}"
 project_uuid: fc14c00df72642b1835e5d2572197e22
 help_improve_mage: true
+openai_api_key: ''
+pipelines:
