@@ -121,7 +121,7 @@ blocks:
   language: yaml
   name: mapping_snapshot
   retry_config: null
-  status: not_executed
+  status: executed
   timeout: null
   type: dbt
   upstream_blocks:

@@ -1,9 +1,11 @@
+{% snapshot product_orders_snapshot %}
 {{
     config(
-        unique_key=['id'],
-        alias='product_orders_final',
-        materialized='incremental',
-        incremental_strategy='merge'
+        target_schema='space',
+        unique_key='id',
+        check_cols='all',
+        strategy='check',
+        
     )
 }}
     select p.*,
@@ -30,5 +32,5 @@
   or pom.created_at > (SELECT MAX(pom_created_at) FROM {{ this }})
   or pom.updated_at > (SELECT MAX(pom_updated_at) FROM {{ this }})
   )
-
 {% endif %}
+{% endsnapshot %}
