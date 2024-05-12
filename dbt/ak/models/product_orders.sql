@@ -23,8 +23,6 @@
   and ( p.updated_at > (SELECT MAX(updated_at) FROM {{ this }})
   or p.created_at > (SELECT MAX(created_at) FROM {{ this }})
   or o.created_at > (SELECT MAX(o_created_at) FROM {{ this }})
-  or o.updated_at > (SELECT MAX(o_updated_at) FROM {{ this }}) 
-  or pom.created_at > (SELECT MAX(pom_created_at) FROM {{ this }})
-  or pom.updated_at > (SELECT MAX(pom_updated_at) FROM {{ this }}))
+  or o.updated_at > (SELECT MAX(o_updated_at) FROM {{ this }}) )
 
 {% endif %}

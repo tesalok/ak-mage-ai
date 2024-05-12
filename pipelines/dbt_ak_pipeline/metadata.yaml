@@ -95,7 +95,7 @@ blocks:
   language: yaml
   name: product_order_data
   retry_config: null
-  status: failed
+  status: executed
   timeout: null
   type: dbt
   upstream_blocks:
