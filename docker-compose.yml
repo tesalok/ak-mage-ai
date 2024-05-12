@@ -17,4 +17,26 @@ services:
     volumes:
       - .:/home/src/${PROJECT_NAME}
     restart: on-failure:5
+    networks:
+      - mage
+  postgres:
+    image: postgres:latest
+    container_name: db_mage
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mage
+
+networks:
+  mage:
+    driver: bridge
+
+volumes:
+  postgres_data:
 

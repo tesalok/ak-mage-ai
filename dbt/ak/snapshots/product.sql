@@ -1,12 +1,15 @@
+{% snapshot product_snapshot %}
+
 {{
     config(
+        target_schema='space',
         unique_key='id',
-        alias='product',
-        materialized='incremental',
-        incremental_strategy='merge'
-    )
+        updated_at='updated_at',
+        strategy='timestamp',
+        )
+       
 }}
-select * from product p 
+select * from space.product p 
 -- where p.is_deleted =false 
 {% if is_incremental() %}
 
@@ -16,3 +19,5 @@ select * from product p
   or created_at > (SELECT MAX(created_at) FROM {{ this }})
 
 {% endif %}
+
+{% endsnapshot %}
