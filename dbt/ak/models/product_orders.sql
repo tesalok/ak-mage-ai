@@ -15,9 +15,9 @@
         pom.id as product_orders_mapping_id,
         pom.created_at as pom_created_at,
         pom.updated_at as pom_updated_at
-    from product p 
-        left join product_orders_mapping pom on pom.product_id = p.id 
-        left join orders o on o.id  = pom.order_id and o.is_deleted =false
+    from {{ target.schema }}.product p 
+        left join {{ target.schema }}.product_orders_mapping pom on pom.product_id = p.id 
+        left join {{ target.schema }}.orders o on o.id  = pom.order_id and o.is_deleted =false
         where p.is_deleted =false
 {% if is_incremental() %}
 
