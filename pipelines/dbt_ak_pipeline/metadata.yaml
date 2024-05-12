@@ -88,7 +88,8 @@ blocks:
     file_source:
       path: dbts/product_order_data.yaml
     use_raw_sql: false
-  downstream_blocks: []
+  downstream_blocks:
+  - mapping_snapshot
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -101,6 +102,31 @@ blocks:
   upstream_blocks:
   - snapshot_data
   uuid: product_order_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    dbt:
+      command: snapshot
+    dbt_profile_target: dev
+    dbt_project_name: dbt/ak
+    disable_query_preprocessing: false
+    export_write_policy: append
+    file_source:
+      path: dbts/mapping_snapshot.yaml
+    use_raw_sql: false
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: yaml
+  name: mapping_snapshot
+  retry_config: null
+  status: not_executed
+  timeout: null
+  type: dbt
+  upstream_blocks:
+  - product_order_data
+  uuid: mapping_snapshot
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
