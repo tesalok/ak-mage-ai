@@ -6,7 +6,7 @@
         incremental_strategy='merge'
     )
 }}
-select * from orders
+select *,current_timestamp as mart_updated_at  from orders 
 
 {% if is_incremental() %}
 
