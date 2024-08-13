@@ -6,15 +6,20 @@
         incremental_strategy='merge'
     )
 }}
-select *,current_timestamp as mart_updated_at  from orders 
+WITH orders_cte AS (
+  select *,
+    current_timestamp as mart_updated_at  
+  from orders 
+)
+
+select *,
+      CASE 
+        WHEN mart_updated_at = current_timestamp THEN false 
+        ELSE true 
+      END as is_sf_published
+from orders_cte
 
 {% if is_incremental() %}
-
-  -- This WHERE clause filters out records that already exist in the destination table.
-  -- Adjust the logic based on your needs (e.g., fetching only newer records).
-    where updated_at > (SELECT MAX(updated_at) FROM {{ this }})
+  where updated_at > (SELECT MAX(updated_at) FROM {{ this }})
   or created_at > (SELECT MAX(created_at) FROM {{ this }})
-
-
-
 {% endif %}
